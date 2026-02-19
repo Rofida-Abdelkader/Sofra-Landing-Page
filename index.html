@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سفرة - تطبيق توصيل الأكل المنزلي</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                سفرة
+            </div>
+            <nav>
+                <a href="#home">الرئيسية</a>
+                <a href="#features">كيف يعمل</a>
+                <a href="#form">انضم إلينا</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-image">
+                <img src="image/food.jpg" alt="أكلة منزلية شهية">            </div>
+            <div class="hero-content">
+                <h1>حولي مطبخك لمشروع مربح مع سفرة</h1>
+                <p>اربح دخلاً إضافياً من مطبخك بكل سهولة وأمان</p>
+                <a href="#form" class="btn-primary-custom">ابدأ الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>لماذا تختار سفرة؟</h2>
+        <div class="features-container">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-bullhorn"></i>
+                </div>
+                <h3>تسويق مجاني</h3>
+                <p>نقوم بتسويق منتجاتك بين ملايين العملاء دون أي تكاليف إضافية عليك</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>توصيل سريع</h3>
+                <p>خدمة توصيل سريعة وموثوقة تصل لباب العميل في أسرع وقت</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h3>عمولة منخفضة</h3>
+                <p>نسبة عمولة منخفضة جداً تصل إلى 10% فقط من قيمة الطلب</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section" id="form">
+        <h2>سجل الآن وابدأ الربح</h2>
+        <div class="form-container">
+            <div class="alert-success" id="successMessage">
+                <i class="fas fa-check-circle"></i> شكراً على تسجيلك! سيتواصل معك فريقنا قريباً.
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="name">الاسم الكامل</label>
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="أدخل اسمك الكامل" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="cuisine">نوع الطبخ</label>
+                    <select id="cuisine" name="cuisine" required>
+                        <option value="">اختر نوع الطبخ</option>
+                        <option value="مصري">مصري</option>
+                        <option value="شامي">شامي</option>
+                        <option value="خليجي">خليجي</option>
+                        <option value="إيطالي">إيطالي</option>
+                        <option value="هندي">هندي</option>
+                        <option value="أوروبي">أوروبي</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">رقم الهاتف</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="01XXXXXXXXX" 
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-user-plus"></i> سجل الآن
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 سفرة - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form Validation and Submission
+        const form = document.getElementById('registerForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const name = document.getElementById('name').value.trim();
+            const cuisine = document.getElementById('cuisine').value;
+            const phone = document.getElementById('phone').value.trim();
+
+            // Validation
+            if (!name || !cuisine || !phone) {
+                alert('يرجى ملء جميع الحقول');
+                return;
+            }
+
+            if (name.length < 3) {
+                alert('الاسم يجب أن يكون على الأقل 3 أحرف');
+                return;
+            }
+
+            if (!/^01[0-9]{9}$/.test(phone)) {
+                alert('يرجى إدخال رقم هاتف صحيح (01XXXXXXXXX)');
+                return;
+            }
+
+            // Show success message
+            successMessage.classList.add('show');
+
+            // Reset form
+            form.reset();
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+
+            // Log the data (in real application, send to server)
+            console.log({
+                name: name,
+                cuisine: cuisine,
+                phone: phone,
+                date: new Date().toLocaleString('ar-EG')
+            });
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Form field real-time validation
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        const nameInput = document.getElementById('name');
+        nameInput.addEventListener('input', function() {
+            this.value = this.value.replace(/[0-9]/g, '');
+        });
+    </script>
+</body>
+</html>
